@@ -11,4 +11,4 @@ User -> Posts
 
 -Retrieve all posts for a User      GET /users/{id}/posts 
 -Create a posts for a User          POST /users/{id}/posts
--Retrieve details of a post         GET  /users/{id}/posts/{post_id}
+-Retrieve details of a post         GET  /users/{id}/posts/{post_id}9
