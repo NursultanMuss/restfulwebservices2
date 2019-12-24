@@ -1,4 +1,4 @@
-package kz.nurs.rest.webservices.restfulwebservices2;
+package kz.nurs.rest.webservices.restfulwebservices2.helloworld;
 
 public class HelloWorldBean {
     private String message;

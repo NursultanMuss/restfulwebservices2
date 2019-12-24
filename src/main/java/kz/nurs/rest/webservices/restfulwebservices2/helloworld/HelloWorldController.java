@@ -1,4 +1,4 @@
-package kz.nurs.rest.webservices.restfulwebservices2;
+package kz.nurs.rest.webservices.restfulwebservices2.helloworld;
 
 import org.springframework.web.bind.annotation.*;
 
