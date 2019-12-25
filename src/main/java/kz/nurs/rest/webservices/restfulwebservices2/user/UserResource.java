@@ -1,8 +1,11 @@
 package kz.nurs.rest.webservices.restfulwebservices2.user;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -24,8 +27,19 @@ public class UserResource {
     }
 
     @PostMapping("/users")
-    public void createUser(@RequestBody User user){
+    public ResponseEntity<Object> createUser(@RequestBody User user){
         User savedUser = service.save(user);
+
+
+
+        // /users/4. And it will return URI of newly created User
+        URI location = ServletUriComponentsBuilder
+                .fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedUser.getId())
+                .toUri();
+        //CREATED. This return status of response
+        return ResponseEntity.created(location).build();
     }
 
 }
