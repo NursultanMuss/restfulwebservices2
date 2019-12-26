@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -25,24 +26,27 @@ public class UserResource {
     public User retrieveUser(@PathVariable int id){
         User user = service.findOne(id);
         if(user == null){
-            throw new UserNotFoundException("id - "+id);
+            throw new UserNotFoundException("id - "+ id);
         }
         return user;
     }
 
+    @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable int id){
+        User user = service.deleteById(id);
+        if(user == null){
+            throw new UserNotFoundException("id - "+ id);
+        }
+    }
+
     @PostMapping("/users")
-    public ResponseEntity<Object> createUser(@RequestBody User user){
+    public ResponseEntity<Object> createUser(@Valid @RequestBody User user){
         User savedUser = service.save(user);
 
-
-
-        // /users/4. And it will return URI of newly created User
-        URI location = ServletUriComponentsBuilder
-                .fromCurrentRequest()
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(savedUser.getId())
                 .toUri();
-        //CREATED. This return status of response
         return ResponseEntity.created(location).build();
     }
 

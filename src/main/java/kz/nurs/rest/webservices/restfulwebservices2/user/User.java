@@ -1,5 +1,7 @@
 package kz.nurs.rest.webservices.restfulwebservices2.user;
 
+import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 public class User {
@@ -7,9 +9,7 @@ public class User {
     private String name;
     private Date birthDate;
 
-    protected User(){
-
-    }
+    protected User(){}
 
     public User(Integer id, String name, Date birthDate) {
         this.id = id;
@@ -34,6 +34,7 @@ public class User {
         this.id = id;
     }
 
+    @Size(min = 2, message = "Name should have at least 2 characters")
     public String getName() {
         return name;
     }
@@ -42,6 +43,7 @@ public class User {
         this.name = name;
     }
 
+    @Past()
     public Date getBirthDate() {
         return birthDate;
     }
