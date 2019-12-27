@@ -1,12 +1,22 @@
 package kz.nurs.rest.webservices.restfulwebservices2.user;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
+@ApiModel(description="All details about the user.")
 public class User {
+
     private Integer id;
+    @ApiModelProperty(notes = "Birth date shiuld be in the pasr")
+
     private String name;
+
+    @Past
+    @ApiModelProperty(notes = "Birth date shiuld be in the pasr")
     private Date birthDate;
 
     protected User(){}
