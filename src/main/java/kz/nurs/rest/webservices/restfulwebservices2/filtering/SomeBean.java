@@ -1,14 +1,13 @@
 package kz.nurs.rest.webservices.restfulwebservices2.filtering;
 
+import com.fasterxml.jackson.annotation.JsonFilter;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@JsonIgnoreProperties(value = {"field1, field2"})
+@JsonFilter("SomeBeanFilter")
 public class SomeBean {
     private String value1;
     private String value2;
-
-    @JsonIgnore
     private String value3;
 
     public SomeBean(String value1, String value2, String value3) {
